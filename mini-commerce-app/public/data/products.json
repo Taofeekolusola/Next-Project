@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "slug": "red-shirt",
+    "name": "Red Shirt",
+    "price": 25.99,
+    "description": "Comfortable cotton red shirt.",
+    "image": "/images/red-shirt.jpg"
+  },
+  {
+    "id": "2",
+    "slug": "blue-jeans",
+    "name": "Blue Jeans",
+    "price": 49.99,
+    "description": "Stylish and durable blue jeans.",
+    "image": "/images/blue-jeans.jpg"
+  },
+  {
+    "id": "3",
+    "slug": "green-hoodie",
+    "name": "Green Hoodie",
+    "price": 39.99,
+    "description": "Warm hoodie with a soft interior.",
+    "image": "/images/green-hoodie.jpg"
+  },
+  {
+    "id": "4",
+    "slug": "white-sneakers",
+    "name": "White Sneakers",
+    "price": 59.99,
+    "description": "Comfortable and trendy white sneakers.",
+    "image": "/images/white-sneakers.jpg"
+  },
+  {
+    "id": "5",
+    "slug": "black-hat",
+    "name": "Black Hat",
+    "price": 19.99,
+    "description": "Classic black baseball cap.",
+    "image": "/images/black-hat.jpg"
+  },
+  {
+    "id": "6",
+    "slug": "yellow-dress",
+    "name": "Yellow Dress",
+    "price": 69.99,
+    "description": "Bright and beautiful summer dress.",
+    "image": "/images/yellow-dress.jpg"
+  },
+  {
+    "id": "7",
+    "slug": "gray-jacket",
+    "name": "Gray Jacket",
+    "price": 89.99,
+    "description": "Elegant and warm gray jacket.",
+    "image": "/images/gray-jacket.jpg"
+  },
+  {
+    "id": "8",
+    "slug": "brown-boots",
+    "name": "Brown Boots",
+    "price": 99.99,
+    "description": "Durable leather boots for all seasons.",
+    "image": "/images/brown-boots.jpg"
+  }
+]
