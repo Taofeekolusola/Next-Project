@@ -13,12 +13,14 @@ type Product = {
   description: string
 }
 
-// ✅ Do NOT use a separate type that might be incorrectly inferred
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+// ✅ Exported type to avoid inference issues in build
+interface PageProps {
+  params: {
+    slug: string
+  }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const product = await getProduct(params.slug)
   if (!product) return {}
 
@@ -32,18 +34,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function ProductPage({ params }: PageProps) {
   const product = await getProduct(params.slug)
   if (!product) return notFound()
 
   return <ProductDetail product={product} />
 }
 
-// ✅ Helper to load products
+// ✅ Helper function to read products
 async function getProduct(slug: string): Promise<Product | undefined> {
   const filePath = path.join(process.cwd(), "public", "data", "products.json")
   const file = await readFile(filePath, "utf-8")
