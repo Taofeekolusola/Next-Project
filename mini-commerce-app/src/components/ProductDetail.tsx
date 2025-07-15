@@ -1,6 +1,6 @@
 'use client'
 
-import { useCartStore } from "@/lib/zustandStore"
+import { useCartStore } from "../lib/zustandStore"
  import Image from "next/image"
 type Product = {
   id: string

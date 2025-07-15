@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useCartStore } from "@/lib/zustandStore"
+import { useCartStore } from "../lib/zustandStore"
 import toast from "react-hot-toast"
 
 type Product = {

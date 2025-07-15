@@ -1,6 +1,6 @@
 "use client"
 
-import { useCartStore } from "@/lib/zustandStore"
+import { useCartStore } from "../../lib/zustandStore"
 import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
 import { FaShoppingCart } from "react-icons/fa"
