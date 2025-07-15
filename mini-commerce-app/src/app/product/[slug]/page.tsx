@@ -1,3 +1,5 @@
+// src/app/product/[slug]/page.tsx
+
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import ProductDetail from "../../../components/ProductDetail"
@@ -13,14 +15,18 @@ type Product = {
   description: string
 }
 
-// ✅ Exported type to avoid inference issues in build
-interface PageProps {
-  params: {
-    slug: string
-  }
+async function getProduct(slug: string): Promise<Product | undefined> {
+  const filePath = path.join(process.cwd(), "public", "data", "products.json")
+  const file = await readFile(filePath, "utf-8")
+  const products: Product[] = JSON.parse(file)
+  return products.find((p) => p.slug === slug)
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+// ✅ This generates dynamic metadata
+export async function generateMetadata(
+  props: { params: { slug: string } }
+): Promise<Metadata> {
+  const { params } = props
   const product = await getProduct(params.slug)
   if (!product) return {}
 
@@ -34,17 +40,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function ProductPage({ params }: PageProps) {
+// ✅ This is the main page component
+export default async function ProductPage(
+  props: { params: { slug: string } }
+) {
+  const { params } = props
   const product = await getProduct(params.slug)
   if (!product) return notFound()
 
   return <ProductDetail product={product} />
-}
-
-// ✅ Helper function to read products
-async function getProduct(slug: string): Promise<Product | undefined> {
-  const filePath = path.join(process.cwd(), "public", "data", "products.json")
-  const file = await readFile(filePath, "utf-8")
-  const products: Product[] = JSON.parse(file)
-  return products.find((p) => p.slug === slug)
 }
