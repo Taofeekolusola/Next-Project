@@ -1,24 +1,30 @@
 import { Metadata } from "next"
-import { getProduct, getProducts } from "@/lib/utils"
+import { getProduct } from "@/lib/utils"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
-export async function generateStaticParams() {
-  const products = await getProducts()
-  return products.map((p) => ({ slug: p.slug }))
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
   const product = await getProduct(params.slug)
+
   return {
     title: product?.name || "Product Not Found",
   }
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug: string }
+}) {
   const product = await getProduct(params.slug)
 
-  if (!product) return notFound()
+  if (!product) {
+    notFound()
+  }
 
   return (
     <main className="p-4 max-w-3xl mx-auto flex flex-col md:flex-row gap-6">
