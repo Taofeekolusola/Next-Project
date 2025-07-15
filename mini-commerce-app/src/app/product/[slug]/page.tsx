@@ -3,14 +3,12 @@ import { getProduct } from "@/lib/utils"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
-// ✅ Define your own PageProps type (DON'T import one)
-type PageProps = {
+interface PageProps {
   params: {
     slug: string
   }
 }
 
-// ✅ This handles setting the page title dynamically
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const product = await getProduct(params.slug)
   return {
@@ -18,11 +16,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function ProductPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const product = await getProduct(params.slug)
 
   if (!product) {
-    // ✅ More idiomatic in Next.js App Router
     notFound()
   }
 
