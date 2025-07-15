@@ -13,6 +13,12 @@ type Product = {
   description: string
 }
 
+type Props = {
+  params: {
+    slug: string
+  }
+}
+
 // ✅ Load products directly from local file using fs
 async function getProduct(slug: string): Promise<Product | undefined> {
   const filePath = path.join(process.cwd(), "public", "data", "products.json")
@@ -22,11 +28,7 @@ async function getProduct(slug: string): Promise<Product | undefined> {
 }
 
 // ✅ Dynamic SEO metadata with correct param handling
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProduct(params.slug)
   if (!product) return {}
 
@@ -41,11 +43,7 @@ export async function generateMetadata({
 }
 
 // ✅ Main product detail page
-export default async function ProductPage({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function ProductPage({ params }: Props) {
   const product = await getProduct(params.slug)
   if (!product) return notFound()
 
