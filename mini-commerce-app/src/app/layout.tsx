@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Providers>
           <Toaster
-            position="top-right"
+            position="top-center"
             toastOptions={{
               duration: 2000,
             }}

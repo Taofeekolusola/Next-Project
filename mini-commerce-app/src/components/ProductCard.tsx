@@ -22,9 +22,9 @@ export default function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <div className="group border rounded-2xl shadow hover:shadow-xl transition overflow-hidden bg-white w-full max-w-md mx-auto">
+    <div className="group border rounded-2xl shadow hover:shadow-xl transition overflow-hidden bg-white w-full max-w-lg">
       <Link href={`/product/${product.slug}`}>
-        <div className="relative w-full h-56 sm:h-64 md:h-72">
+        <div className="relative w-full h-64 sm:h-72 md:h-80">
           <Image
             src={product.image}
             alt={product.name}
@@ -34,6 +34,7 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         </div>
       </Link>
+
 
       <div className="p-5 flex flex-col gap-2">
         <h3 className="text-lg sm:text-xl font-semibold text-gray-800">{product.name}</h3>
