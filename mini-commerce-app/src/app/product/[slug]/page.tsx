@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { getProduct } from "@/lib/utils"
+import Image from "next/image"
 
 type PageProps = {
   params: {
@@ -27,7 +28,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <main className="p-4 max-w-3xl mx-auto flex flex-col md:flex-row gap-6">
-      <img
+      <Image
         src={product.image}
         alt={product.name}
         className="w-full md:w-1/2 h-64 object-cover rounded"
