@@ -13,23 +13,11 @@ type Product = {
   description: string
 }
 
-type Params = {
-  slug: string
-}
-
-// ✅ Fetch product by slug
-async function getProduct(slug: string): Promise<Product | undefined> {
-  const filePath = path.join(process.cwd(), "public", "data", "products.json")
-  const file = await readFile(filePath, "utf-8")
-  const products: Product[] = JSON.parse(file)
-  return products.find((p) => p.slug === slug)
-}
-
-// ✅ SEO Metadata
+// ✅ Do NOT use a separate type that might be incorrectly inferred
 export async function generateMetadata({
   params,
 }: {
-  params: Params
+  params: { slug: string }
 }): Promise<Metadata> {
   const product = await getProduct(params.slug)
   if (!product) return {}
@@ -44,14 +32,21 @@ export async function generateMetadata({
   }
 }
 
-// ✅ Page component
 export default async function ProductPage({
   params,
 }: {
-  params: Params
+  params: { slug: string }
 }) {
   const product = await getProduct(params.slug)
   if (!product) return notFound()
 
   return <ProductDetail product={product} />
+}
+
+// ✅ Helper to load products
+async function getProduct(slug: string): Promise<Product | undefined> {
+  const filePath = path.join(process.cwd(), "public", "data", "products.json")
+  const file = await readFile(filePath, "utf-8")
+  const products: Product[] = JSON.parse(file)
+  return products.find((p) => p.slug === slug)
 }
