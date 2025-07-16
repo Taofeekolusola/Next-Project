@@ -23,7 +23,7 @@ export default function CartPage() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col sm:flex-row gap-4 items-center bg-white shadow-md p-4 rounded-xl"
+              className="flex flex-col sm:flex-row gap-4 items-center bg-white shadow-md p-4 rounded-xl relative"
             >
               <Image
                 src={item.image}
@@ -32,6 +32,7 @@ export default function CartPage() {
                 height={100}
                 className="rounded-lg object-cover"
               />
+
               <div className="flex-1 w-full">
                 <h2 className="text-lg font-semibold">{item.name}</h2>
                 <p className="text-sm text-gray-600">${item.price}</p>
@@ -45,16 +46,18 @@ export default function CartPage() {
                     }
                     className="w-16 px-2 py-1 border rounded"
                   />
-                  <button
-                    onClick={() => handleRemove(item.id)}
-                    className="text-red-600 hover:underline text-sm"
-                  >
-                    Remove
-                  </button>
                 </div>
               </div>
+
+              <button
+                onClick={() => handleRemove(item.id)}
+                className="sm:absolute sm:top-4 sm:right-4 mt-2 sm:mt-0 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-4 py-1 rounded-md transition"
+              >
+                Remove
+              </button>
             </div>
           ))}
+
           <div className="text-right text-lg font-bold">
             Total: ${total().toFixed(2)}
           </div>

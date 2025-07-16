@@ -1,7 +1,8 @@
-'use client'
+"use client"
 
 import { useCartStore } from "../lib/zustandStore"
- import Image from "next/image"
+import Image from "next/image"
+
 type Product = {
   id: string
   slug: string
@@ -19,22 +20,31 @@ export default function ProductDetail({ product }: { product: Product }) {
   }
 
   return (
-    <main className="p-4 max-w-3xl mx-auto flex flex-col md:flex-row gap-6">  
-
+    <main className="p-6 max-w-5xl mx-auto flex flex-col md:flex-row gap-8 bg-white shadow-lg rounded-2xl border border-gray-100">
+      <div className="w-full md:w-1/2">
         <Image
-        src={product.image}
-        alt={product.name}
-        width={500}
-        height={400}
-        className="w-full md:w-1/2 h-64 object-cover rounded"
+          src={product.image}
+          alt={product.name}
+          width={600}
+          height={450}
+          className="w-full h-[400px] object-cover rounded-xl shadow-sm"
         />
-      <section className="flex-1">
-        <h1 className="text-2xl font-bold">{product.name}</h1>
-        <p className="text-gray-700 mt-2">${product.price.toFixed(2)}</p>
-        <p className="mt-4 text-sm text-gray-600">{product.description}</p>
+      </div>
+
+      <section className="flex-1 flex flex-col justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
+          <p className="text-xl text-blue-600 font-semibold mt-2">
+            ${product.price.toFixed(2)}
+          </p>
+          <p className="mt-4 text-base text-gray-700 leading-relaxed tracking-wide">
+            {product.description}
+          </p>
+        </div>
+
         <button
           onClick={handleAddToCart}
-          className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-6 w-fit bg-blue-600 text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Add to Cart
         </button>
